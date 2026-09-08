@@ -1,0 +1,44 @@
+{
+  "clientId": "colin",
+  "displayName": "Colin",
+  "businessName": "First Principles Coaching",
+  "categories": [
+    "Client Sessions",
+    "Sales & Marketing",
+    "Admin & Ops",
+    "Content Creation",
+    "Planning & Strategy",
+    "Email & Communication",
+    "Learning & Development",
+    "Family & Personal",
+    "Other"
+  ],
+  "maxQuestionsPerBlock": 5,
+  "silenceMs": 1800,
+  "openingPrompt": "Let's walk through your day. Start wherever you want, and just keep talking \u2014 one activity at a time, what you did and roughly how long it took. I'll jump in if I need something clarified. When you're done with everything, just say \"that's it\" and I'll pull the report together.",
+  "finishPhrases": [
+    "that's it",
+    "that's all",
+    "that's everything",
+    "i'm done",
+    "we're done",
+    "end the audit",
+    "finish the audit",
+    "finish up",
+    "wrap it up",
+    "that's my day"
+  ],
+  "undoPhrases": [
+    "scratch that",
+    "undo that",
+    "redo that",
+    "that's wrong",
+    "delete that",
+    "forget that last one"
+  ],
+  "voice": {
+    "enabled": true,
+    "rate": 1.0,
+    "pitch": 1.0
+  }
+}

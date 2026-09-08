@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Time Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ===== INTRO SCREEN ===== -->
+  <section id="screen-intro" class="screen">
+    <div class="intro-wrap">
+      <p class="kicker">Time Audit</p>
+      <h1 class="headline">Press start. Then just talk.</h1>
+      <p class="lede">One tap to begin — after that it's hands-free. Walk through your day out loud, one activity at a time. It'll ask a quick follow-up out loud only when it needs one, log each block on its own, and pull together a full breakdown the moment you say "that's it."</p>
+      <button id="btn-start" class="btn-primary">Start the audit</button>
+      <button id="btn-history" class="btn-text">See a past audit</button>
+    </div>
+  </section>
+
+  <!-- ===== HISTORY LIST ===== -->
+  <section id="screen-history" class="screen hidden">
+    <div class="narrow-wrap">
+      <button class="btn-back" id="btn-history-back">Back</button>
+      <h2 class="section-title">Past audits</h2>
+      <div id="history-list" class="history-list"></div>
+    </div>
+  </section>
+
+  <!-- ===== SESSION SCREEN ===== -->
+  <section id="screen-session" class="screen hidden">
+    <div class="session-wrap">
+
+      <div class="session-top">
+        <span id="block-counter" class="block-counter">Block 1</span>
+        <span id="state-label" class="state-label">Listening</span>
+      </div>
+
+      <p id="prompt-text" class="prompt-text"></p>
+
+      <div class="mic-area">
+        <div id="orb" class="orb listening" aria-hidden="true"><span class="orb-dot"></span></div>
+        <p id="mic-status" class="mic-status">Just start talking</p>
+      </div>
+
+      <div id="transcript-live" class="transcript-live" aria-live="polite"></div>
+
+      <div id="blocks-logged" class="blocks-logged"></div>
+
+      <button id="btn-finish" class="btn-text finish-fallback">Or tap here to finish</button>
+    </div>
+  </section>
+
+  <!-- ===== REPORT SCREEN ===== -->
+  <section id="screen-report" class="screen hidden">
+    <div class="report-wrap">
+      <p class="kicker">Audit complete</p>
+      <h2 class="headline small">Where the time went</h2>
+
+      <div id="report-summary" class="report-summary"></div>
+
+      <h3 class="report-subhead">By category</h3>
+      <div id="report-bars" class="report-bars"></div>
+
+      <h3 class="report-subhead">Biggest drain</h3>
+      <div id="report-drain" class="report-drain"></div>
+
+      <h3 class="report-subhead">What to hand off first</h3>
+      <div id="report-candidates" class="report-candidates"></div>
+
+      <button id="btn-new-audit" class="btn-primary">Start another audit</button>
+    </div>
+  </section>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
