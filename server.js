@@ -96,6 +96,29 @@ Respond with ONLY a JSON object, no other text, in this exact shape:
   "summary": "string"
 }`;
 
+// ---------- dollar-value layer (deterministic, added on top of the model's report) ----------
+function attachDollarValues(report, config) {
+  const hourlyRate = config.hourlyRate;
+  if (!hourlyRate || !Array.isArray(report.candidates)) return;
+
+  report.candidates = report.candidates.map((c) => ({
+    ...c,
+    estimatedWeeklyValue: Math.round(((c.estimatedMinutesPerWeek || 0) / 60) * hourlyRate),
+  }));
+
+  const automateMinutes = report.candidates
+    .filter((c) => c.type === 'automate')
+    .reduce((sum, c) => sum + (c.estimatedMinutesPerWeek || 0), 0);
+
+  report.automatableSummary = {
+    hourlyRate,
+    totalMinutesPerWeek: automateMinutes,
+    totalHoursPerWeek: Math.round((automateMinutes / 60) * 10) / 10,
+    estimatedWeeklyValue: Math.round((automateMinutes / 60) * hourlyRate),
+    estimatedAnnualValue: Math.round((automateMinutes / 60) * hourlyRate * 52),
+  };
+}
+
 // ---------- routes ----------
 
 // Start a session
@@ -246,6 +269,7 @@ app.post('/api/session/:id/finish', async (req, res) => {
       2048
     );
     const report = extractJson(raw);
+    attachDollarValues(report, config);
     session.report = report;
     session.finished = true;
     session.finishedAt = new Date().toISOString();

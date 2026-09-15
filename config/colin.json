@@ -2,6 +2,7 @@
   "clientId": "colin",
   "displayName": "Colin",
   "businessName": "First Principles Coaching",
+  "hourlyRate": 150,
   "categories": [
     "Client Sessions",
     "Sales & Marketing",

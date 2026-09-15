@@ -90,6 +90,7 @@
     transcriptLive: document.getElementById('transcript-live'),
     blocksLogged: document.getElementById('blocks-logged'),
     reportSummary: document.getElementById('report-summary'),
+    reportValueBanner: document.getElementById('report-value-banner'),
     reportBars: document.getElementById('report-bars'),
     reportDrain: document.getElementById('report-drain'),
     reportCandidates: document.getElementById('report-candidates'),
@@ -298,6 +299,17 @@
   function renderReport(report) {
     el.reportSummary.textContent = report.summary || '';
 
+    if (report.automatableSummary && report.automatableSummary.estimatedWeeklyValue > 0) {
+      const s = report.automatableSummary;
+      el.reportValueBanner.innerHTML = `
+        <span class="value-banner-amount">$${s.estimatedWeeklyValue.toLocaleString()}/week</span>
+        <span class="value-banner-detail">in automatable time (${s.totalHoursPerWeek} hrs @ $${s.hourlyRate}/hr) — about $${s.estimatedAnnualValue.toLocaleString()}/year</span>
+      `;
+      el.reportValueBanner.classList.remove('hidden');
+    } else {
+      el.reportValueBanner.classList.add('hidden');
+    }
+
     el.reportBars.innerHTML = '';
     const maxMin = Math.max(...report.categoryTotals.map((c) => c.minutes), 1);
     report.categoryTotals
@@ -321,7 +333,7 @@
       item.className = 'candidate-item';
       item.innerHTML = `
         <div class="candidate-top"><span class="candidate-title">${escapeHtml(c.title)}</span><span class="candidate-type">${c.type}</span></div>
-        <div class="candidate-mins">~${c.estimatedMinutesPerWeek} min/week</div>
+        <div class="candidate-mins">~${c.estimatedMinutesPerWeek} min/week${c.estimatedWeeklyValue ? ` &middot; <span class="candidate-value">$${c.estimatedWeeklyValue.toLocaleString()}/week</span>` : ''}</div>
         <div class="candidate-reason">${escapeHtml(c.reason)}</div>
       `;
       el.reportCandidates.appendChild(item);

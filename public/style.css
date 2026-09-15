@@ -319,6 +319,26 @@ button:focus-visible, a:focus-visible {
   margin: 0 0 1rem 0;
 }
 
+.report-value-banner {
+  border: 1px solid var(--slate-dim);
+  background: var(--paper-raised);
+  border-left: 2px solid var(--slate);
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 1.8rem;
+  border-radius: 3px;
+}
+.report-value-banner .value-banner-amount {
+  font-family: 'Fraunces', serif;
+  font-size: 1.3rem;
+  color: var(--slate);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.report-value-banner .value-banner-detail {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+
 .report-bars { margin-bottom: 2.2rem; }
 .bar-row { margin-bottom: 0.9rem; }
 .bar-row-top {
@@ -379,6 +399,7 @@ button:focus-visible, a:focus-visible {
   margin-bottom: 0.35rem;
 }
 .candidate-reason { font-size: 0.92rem; color: var(--ink-muted); line-height: 1.5; }
+.candidate-value { color: var(--slate); font-weight: 500; }
 
 @media (max-width: 480px) {
   .intro-wrap { padding-top: 8vh; }
